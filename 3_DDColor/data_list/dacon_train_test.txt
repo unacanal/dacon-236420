@@ -1,0 +1,5 @@
+../data/train_gt/TRAIN_00000.png
+../data/train_gt/TRAIN_00001.png
+../data/train_gt/TRAIN_00002.png
+../data/train_gt/TRAIN_00003.png
+../data/train_gt/TRAIN_00004.png

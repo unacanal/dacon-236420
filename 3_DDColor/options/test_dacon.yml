@@ -1,0 +1,70 @@
+# general settings
+name: test_dacon
+model_type: ColorModel
+scale: 1
+num_gpu: 8
+manual_seed: 0
+queue_size: 64
+
+# dataset and data loader settings
+datasets:
+  val:
+    name: Dacon
+    type: LabDataset
+    dataroot_gt: None
+    meta_info_file: 'data_list/dacon_test_inpainted.txt'
+    gt_size: 512
+    io_backend:
+      type: disk
+    # cutmix / fmix
+    do_cutmix: False
+    cutmix_p: 0.5
+    do_fmix: False
+    fmix_p: 0.5
+
+# network structures
+network_g:
+  type: DDColor
+  
+  encoder_name: convnext-l
+  encoder_from_pretrain: True
+
+  decoder_name: MultiScaleColorDecoder
+  num_queries: 100
+  num_scales: 3
+  dec_layers: 9
+
+  last_norm: Spectral
+  num_output_channels: 2
+  tta: True
+
+network_d:
+  type: DynamicUNetDiscriminator
+  nf: 64
+  n_channels: 3
+
+
+# path
+path:
+  pretrain_network_g: finetune/net_g_5000.pth
+  pretrain_network_d: finetune/net_d_5000.pth
+  strict_load_g: false
+
+logger:
+  use_tb_logger: false
+
+# Uncomment these for validation
+# validation settings
+val:
+  save_img: True
+  pbar: True
+  suffix:
+
+  metrics: {}
+
+# dist training settings
+dist_params:
+  backend: nccl
+  port: 29500
+
+find_unused_parameters: true
