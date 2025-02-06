@@ -1,4 +1,5 @@
-# DACON 이미지 색상화 및 손실 부분 복원 AI 경진대회 [1st Place]
+# An Integration Framework for Inpainting and Colorization of Arbitrary Masked Grayscale Images
+*DACON 이미지 색상화 및 손실 부분 복원 AI 경진대회 [1st Place]*
 ```mermaid
 flowchart TD
     subgraph Phase1[Phase 1: Mask Generation]
